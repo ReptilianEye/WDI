@@ -10,7 +10,7 @@ from math import log10, floor
 
 
 def primes_sito(n):
-    n = (n+2)**2
+    n = (2)**n
     primes = [True for _ in range(n)]
     primes[0] = primes[1] = False
     i = 2
@@ -34,19 +34,32 @@ def get_from_bin(t):
 
     return num
 
+
 def znajdzPierwszePodciagi(T):
     primes = primes_sito(len(T))
 
     success = False
+    wyn = []
 
     def pierwsze_podciagi_r(T, start=0):
         nonlocal success
-        print(T[start:])
-        if start == len(T)-1:
+        # print(T[start:])
+        if start == len(T):
             success = True
-        for i in range(len(T)):
-            if primes(get_from_bin(T[start:i])):
-                pierwsze_podciagi_r(T,i)
+            print(wyn)
+            exit()
+        for i in range(start+1, len(T)+1):
+            if i - start > 20:
+                print("Nie da się, za długi ciąg")
+                exit()
+            num = get_from_bin(T[start:i])
+            if primes[num] and not success:
+                wyn.append(T[start:i])
+                pierwsze_podciagi_r(T, i)
+                wyn.pop()
 
-T = [1,1,1,0,1]
+    pierwsze_podciagi_r(T)
+
+
+T = [1, 1, 1, 0, 1]
 znajdzPierwszePodciagi(T)
