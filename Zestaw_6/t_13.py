@@ -6,16 +6,16 @@ ków. Na przykład dla liczby 4 są to: 1+3, 1+1+2, 1+1+1+1, 2+2.
 # counter = 0
 # dodanie "i" zabezpiecza nas przed sytuacja w ktorej dodajmy kombinacje nieposortowana
 def podziel(n, i=1, komb=""):
-    global counter
+    # global counter
     if n == 0:
-        print(komb)
+        print(komb[:-1])
         # counter += 1
         return
     for i in range(i, n+1):
-        podziel(n-i, i, komb=komb + str(i))
+        podziel(n-i, i, komb + str(i) + "+")
 
 
-podziel(20)
+podziel(4)
 # print(counter)
 
 # Krzysztof Wysocki

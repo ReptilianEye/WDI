@@ -1,0 +1,1 @@
+#nie wiadomo o co chodzi w tresci
